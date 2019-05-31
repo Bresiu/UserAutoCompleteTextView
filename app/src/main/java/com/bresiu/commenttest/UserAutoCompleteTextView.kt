@@ -3,15 +3,11 @@ package com.bresiu.commenttest
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
-import android.util.Log
-import androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView
 import android.text.Editable
 import android.text.Spannable
 import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
-import android.widget.Filter
 import android.widget.MultiAutoCompleteTextView
-import java.lang.IndexOutOfBoundsException
 
 
 class UserAutoCompleteTextView @JvmOverloads constructor(
@@ -24,6 +20,7 @@ class UserAutoCompleteTextView @JvmOverloads constructor(
             override fun afterTextChanged(s: Editable) {
                 if (s.endsWith('@')) s.setSpan(ForegroundColorSpan(Color.GREEN), s.length - 1, s.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
+
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
         })
