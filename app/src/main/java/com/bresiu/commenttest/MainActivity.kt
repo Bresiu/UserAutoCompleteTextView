@@ -1,18 +1,20 @@
 package com.bresiu.commenttest
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val users = getUsers()
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, users)
+        val avatarProvider = AvatarProvider()
+        val users = getUsers(avatarProvider)
+        val adapter = ChatUserAdapter(layoutInflater, R.layout.user_row, users)
         val textView = findViewById<UserAutoCompleteTextView>(R.id.countries_list)
-        textView.setTokenizer(UserMentionTokenizer())
+        val color = ContextCompat.getColor(this, R.color.colorAccent)
+        textView.setTokenizer(UserMentionTokenizer(color))
         textView.setAdapter(adapter)
     }
 }

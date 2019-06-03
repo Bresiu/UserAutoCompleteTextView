@@ -6,6 +6,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorAccentFocused</item>
     </style>
 
+    <style name="UserAutoCompleteListView" parent="@android:style/Widget.Material.AutoCompleteTextView">
+        <item name="android:dropDownListViewStyle">@style/DropDownListViewStyle</item>
+    </style>
+
+    <style name="DropDownListViewStyle" parent="@android:style/Widget.Material.ListView">
+        <item name="android:divider">#4F4F4F</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
 </resources>

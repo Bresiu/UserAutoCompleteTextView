@@ -8,7 +8,7 @@
 
     <com.bresiu.commenttest.UserAutoCompleteTextView
         android:id="@+id/countries_list"
-        style="@android:style/Widget.Material.AutoCompleteTextView"
+        style="@style/UserAutoCompleteListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"

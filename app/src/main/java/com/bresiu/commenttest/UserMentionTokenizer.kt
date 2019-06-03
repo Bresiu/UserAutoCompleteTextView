@@ -1,14 +1,15 @@
 package com.bresiu.commenttest
 
-import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.widget.MultiAutoCompleteTextView
+import androidx.annotation.ColorInt
 
-class UserMentionTokenizer : MultiAutoCompleteTextView.Tokenizer {
+class UserMentionTokenizer(@ColorInt val color: Int) : MultiAutoCompleteTextView.Tokenizer {
 
     override fun findTokenStart(text: CharSequence, cursor: Int): Int {
         var i = cursor
@@ -42,6 +43,7 @@ class UserMentionTokenizer : MultiAutoCompleteTextView.Tokenizer {
     }
 
     private fun getSpannable(text: CharSequence): SpannableString {
-        return SpannableString("@$text ").apply { setSpan(ForegroundColorSpan(Color.GREEN), 0, text.length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }
+        Log.d("BRS", "getSpannable: $text")
+        return SpannableString("@$text ").apply { setSpan(ForegroundColorSpan(color), 0, text.length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.TextUtils
 import android.text.method.QwertyKeyListener
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.MultiAutoCompleteTextView
 
 
