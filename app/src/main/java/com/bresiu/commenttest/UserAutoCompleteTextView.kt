@@ -1,12 +1,9 @@
 package com.bresiu.commenttest
 
 import android.content.Context
-import android.graphics.Color
+import android.text.TextUtils
+import android.text.method.QwertyKeyListener
 import android.util.AttributeSet
-import android.text.Editable
-import android.text.Spannable
-import android.text.TextWatcher
-import android.text.style.ForegroundColorSpan
 import android.widget.MultiAutoCompleteTextView
 
 
@@ -15,15 +12,14 @@ class UserAutoCompleteTextView @JvmOverloads constructor(
 ) : MultiAutoCompleteTextView(context, attrs, defStyleAttr) {
     private lateinit var tokenizer: Tokenizer
 
-    init {
-        addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {
-                if (s.endsWith('@')) s.setSpan(ForegroundColorSpan(Color.GREEN), s.length - 1, s.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            }
-
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-        })
+    override fun replaceText(text: CharSequence) {
+        clearComposingText()
+        val end = selectionEnd
+        val start = tokenizer.findTokenStart(getText(), end) - 1
+        val editable = getText()
+        val original = TextUtils.substring(editable, start, end)
+        QwertyKeyListener.markAsReplaced(editable, start, end, original)
+        editable.replace(start, end, tokenizer.terminateToken(text))
     }
 
     override fun setTokenizer(t: Tokenizer) {

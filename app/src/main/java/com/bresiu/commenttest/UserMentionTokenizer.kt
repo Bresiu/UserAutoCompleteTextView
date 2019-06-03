@@ -42,6 +42,6 @@ class UserMentionTokenizer : MultiAutoCompleteTextView.Tokenizer {
     }
 
     private fun getSpannable(text: CharSequence): SpannableString {
-        return SpannableString("$text ").apply { setSpan(ForegroundColorSpan(Color.GREEN), 0, text.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }
+        return SpannableString("@$text ").apply { setSpan(ForegroundColorSpan(Color.GREEN), 0, text.length + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }
     }
 }
