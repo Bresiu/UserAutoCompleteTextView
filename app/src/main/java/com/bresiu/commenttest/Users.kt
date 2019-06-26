@@ -4,8 +4,4 @@ fun getUserNames() = listOf("Michael", "James", "John", "Robert", "David", "Will
 
 fun getUsers(avatarProvider: AvatarProvider) = getUserNames().map { User(it, avatarProvider.getAvatarForUser()) }
 
-data class User(val name: String, val avatar: Int) {
-    override fun toString(): String {
-        return name
-    }
-}
+data class User(val name: String, val avatar: Int)

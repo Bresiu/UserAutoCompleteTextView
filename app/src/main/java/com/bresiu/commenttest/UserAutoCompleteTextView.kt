@@ -4,7 +4,6 @@ import android.content.Context
 import android.text.TextUtils
 import android.text.method.QwertyKeyListener
 import android.util.AttributeSet
-import android.util.Log
 import android.widget.MultiAutoCompleteTextView
 
 
@@ -34,5 +33,12 @@ class UserAutoCompleteTextView @JvmOverloads constructor(
         if (end < 0) return false
         val start = tokenizer.findTokenStart(text, end)
         return end - start >= threshold && start > 0 && text[start - 1] == '@'
+    }
+
+    override fun convertSelectionToString(selectedItem: Any?): CharSequence {
+        if (selectedItem is User) {
+            return selectedItem.name
+        }
+        return super.convertSelectionToString(selectedItem)
     }
 }
